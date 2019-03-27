@@ -1,4 +1,4 @@
-package com.servicecontrol.dev.repositories.impl;
+package com.servicecontrol.dev.services.impl;
 
 import java.util.List;
 
