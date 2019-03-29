@@ -7,12 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Task {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String name;
@@ -28,6 +29,9 @@ public class Task {
 	private Long price;
 	
 	private TaskStatus status;
+	
+	@ManyToOne
+	private User user;
 	
 	public Task() {
 		
@@ -97,10 +101,19 @@ public class Task {
 		this.status = status;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "Task [id=" + id + ", name=" + name + ", description=" + description + ", creation_date=" + creation_date
-				+ ", end_date=" + end_date + ", term=" + term + ", price=" + price + ", status=" + status + "]";
+				+ ", end_date=" + end_date + ", term=" + term + ", price=" + price + ", status=" + status + ", user="
+				+ user + "]";
 	}
-	
+
 }

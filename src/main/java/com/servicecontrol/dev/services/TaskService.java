@@ -6,11 +6,11 @@ import com.servicecontrol.dev.models.Task;
 
 public interface TaskService {
 
-	Task register(Task task);
+	Task register(Long userId,Task task);
 	
 	Task getById(Long id);
 	
-	List<Task> getAll();
+	List<Task> getAllByUser(Long userId);
 	
 	Task update(Long id, Task taskUpdate);
 	

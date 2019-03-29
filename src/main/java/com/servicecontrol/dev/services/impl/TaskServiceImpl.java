@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.servicecontrol.dev.models.Task;
+import com.servicecontrol.dev.models.User;
 import com.servicecontrol.dev.repositories.TaskRepository;
+import com.servicecontrol.dev.repositories.UserRepository;
 import com.servicecontrol.dev.services.TaskService;
 
 @Service
@@ -15,19 +17,31 @@ public class TaskServiceImpl implements TaskService {
 	@Autowired
 	private TaskRepository taskRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@Override
-	public Task register(Task task) {
-		return this.taskRepository.save(task);
+	public Task register(Long userId,Task task) {
+		User user = this.userRepository.findById(userId).orElseThrow(()->
+			new RuntimeException());
+		
+		user.getTasks().add(task);
+		
+		this.taskRepository.save(task);
+		this.userRepository.save(user);
+		
+		return task;
 	}
 
 	@Override
 	public Task getById(Long id) {
-		return this.taskRepository.findById(id).get();
+		return this.taskRepository.findById(id).orElseThrow(()->
+				new RuntimeException());
 	}
 
 	@Override
-	public List<Task> getAll() {
-		return this.taskRepository.findAll();
+	public List<Task> getAllByUser(Long userId) {
+		return this.taskRepository.findAllByUser(userId);
 	}
 
 	@Override

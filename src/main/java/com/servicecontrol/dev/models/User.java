@@ -1,15 +1,19 @@
 package com.servicecontrol.dev.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
 
 	@Id
-	@GeneratedValue(strategy =GenerationType.TABLE)
+	@GeneratedValue(strategy =GenerationType.AUTO)
 	private Long id;
 	
 	private String name;
@@ -17,6 +21,9 @@ public class User {
 	private String email;
 	
 	private String password;
+	
+	@OneToMany(mappedBy="user")
+	private List<Task> tasks = new ArrayList<Task>();
 	
 	public User() {
 		
@@ -54,9 +61,18 @@ public class User {
 		this.password = password;
 	}
 
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", tasks=" + tasks
+				+ "]";
 	}
 		
 }
