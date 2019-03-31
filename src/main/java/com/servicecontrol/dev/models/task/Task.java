@@ -1,4 +1,4 @@
-package com.servicecontrol.dev.models;
+package com.servicecontrol.dev.models.task;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.servicecontrol.dev.models.User;
+
 @Entity
 public class Task {
 
@@ -18,18 +22,24 @@ public class Task {
 	
 	private String name;
 	
+	private String client;
+	
 	private String description;
 	
+//	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime creation_date;
 	
+//	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime end_date;
 	
+//	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate term;
 	
 	private Long price;
 	
 	private TaskStatus status;
 	
+	@JsonIgnore
 	@ManyToOne
 	private User user;
 	
@@ -51,6 +61,14 @@ public class Task {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getClient() {
+		return client;
+	}
+
+	public void setClient(String client) {
+		this.client = client;
 	}
 
 	public String getDescription() {
@@ -111,9 +129,9 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", name=" + name + ", description=" + description + ", creation_date=" + creation_date
-				+ ", end_date=" + end_date + ", term=" + term + ", price=" + price + ", status=" + status + ", user="
-				+ user + "]";
+		return "Task [id=" + id + ", name=" + name + ", client=" + client + ", description=" + description
+				+ ", creation_date=" + creation_date + ", end_date=" + end_date + ", term=" + term + ", price=" + price
+				+ ", status=" + status + ", user=" + user + "]";
 	}
 
 }
