@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.servicecontrol.dev.models.task.Task;
 
-@Entity
+@Entity(name="users")
 public class User {
 
 	@Id
