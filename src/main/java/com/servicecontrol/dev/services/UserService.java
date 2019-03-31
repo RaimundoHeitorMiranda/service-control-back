@@ -10,6 +10,8 @@ public interface UserService {
 	
 	User getUser(Long id);
 	
+	User getUserByEmail(String email);
+	
 //	lack pagination and search
 	List<User> getAllUsers();
 	

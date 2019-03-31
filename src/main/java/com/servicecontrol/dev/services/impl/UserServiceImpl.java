@@ -25,6 +25,12 @@ public class UserServiceImpl implements UserService{
 		return this.userRepository.findById(id).orElseThrow(()->
 				new RuntimeException());
 	}
+	
+	@Override
+	public User getUserByEmail(String email) {
+		return this.userRepository.findUserByEmail(email).orElseThrow(()->
+		new RuntimeException());
+	}
 
 	@Override
 	public List<User> getAllUsers() {
@@ -45,9 +51,6 @@ public class UserServiceImpl implements UserService{
 	public void delete(Long id) {
 		this.userRepository.deleteById(id);
 		
-	}
-
-	
-	
+	}	
 	
 }

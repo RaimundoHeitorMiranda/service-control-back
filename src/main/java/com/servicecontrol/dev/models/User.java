@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.servicecontrol.dev.models.task.Task;
+
 @Entity
 public class User {
 
@@ -22,6 +25,7 @@ public class User {
 	
 	private String password;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Task> tasks = new ArrayList<Task>();
 	
