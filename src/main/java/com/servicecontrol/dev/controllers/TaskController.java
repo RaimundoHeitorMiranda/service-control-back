@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.servicecontrol.dev.models.Task;
+import com.servicecontrol.dev.models.task.Task;
+import com.servicecontrol.dev.models.task.TaskStatusCount;
 import com.servicecontrol.dev.services.TaskService;
 
 @RestController
@@ -26,7 +27,7 @@ public class TaskController {
 	@Autowired
 	private TaskService taskService;
 	
-	
+	//crud
 	@PostMapping
 	public ResponseEntity<Task> register(@PathVariable Long userId,@RequestBody Task task){
 		return ResponseEntity.status(HttpStatus.OK).body(this.taskService.register(userId,task));
@@ -51,6 +52,13 @@ public class TaskController {
 	public ResponseEntity delete(@PathVariable Long id) {
 		this.taskService.delete(id);
 		return ResponseEntity.status(HttpStatus.OK).build();	
+	}
+	
+	// statistic
+	
+	@GetMapping("/statistic")
+	public ResponseEntity<TaskStatusCount> getstatistc(@PathVariable Long userId){
+		return ResponseEntity.status(HttpStatus.OK).body(this.taskService.getStatistcs(userId));
 	}
 	
 }

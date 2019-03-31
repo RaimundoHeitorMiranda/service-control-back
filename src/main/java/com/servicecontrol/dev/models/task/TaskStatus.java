@@ -1,4 +1,4 @@
-package com.servicecontrol.dev.models;
+package com.servicecontrol.dev.models.task;
 
 
 public enum TaskStatus {
@@ -8,7 +8,8 @@ public enum TaskStatus {
 	PAUSED("PAUSED"),
 	STOPPED("STOPPED"),
 	CANCELED("CANCELED"),
-	WAITING_PAYMENT("WAITING_PAYMENT");
+	WAITING_PAYMENT("WAITING_PAYMENT"),
+	FINALIZED("FINALIZED");
 	
 	private String status;
 	
